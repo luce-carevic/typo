@@ -2,7 +2,7 @@
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
 # 
-# Copyright (c) 2011 Franck Paul and contributors
+# Copyright (c) 2012 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
 # 
 # Licensed under the GPL version 2.0 license.

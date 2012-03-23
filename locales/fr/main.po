@@ -7,9 +7,9 @@ msgstr ""
 "Project-Id-Version: Dotclear 2 typo extension\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-05 19:57+0100\n"
-"PO-Revision-Date: 2009-10-30 08:24+0100\n"
+"PO-Revision-Date: 2012-03-23 10:31+0100\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
-"Language-Team: Franck Paul <franck.paul@free.fr>\n"
+"Language-Team: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -55,6 +55,15 @@ msgstr "Activer l'extension pour les billets de ce blog"
 
 msgid "Activating this option enforces typographic replacements in blog entries"
 msgstr "Activer cette extension permet le remplacement des éléments typographiques dans le contenu des billets de ce blog"
+
+msgid "Enable Typo for titles"
+msgstr "Activer l'extension pour les titres des billets"
+
+msgid "Activating this option enforces typographic replacements in titles of blog entries"
+msgstr "Activer cette option permet le remplacement des éléments typographiques pour les titres des billets de ce blog"
+
+msgid "(only if also activated for blog entries, see previous option)"
+msgstr "(seulement si également activé pour les billets de ce blog, voir l'option précédente)"
 
 msgid "Enable Typo for comments"
 msgstr "Activer l'extension pour les commentaires également"

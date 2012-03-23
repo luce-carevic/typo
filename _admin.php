@@ -2,7 +2,7 @@
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
 # 
-# Copyright (c) 2011 Franck Paul and contributors
+# Copyright (c) 2012 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
 # 
 # Licensed under the GPL version 2.0 license.
@@ -13,8 +13,12 @@
  
 require_once dirname(__FILE__).'/inc/smartypants.php';
 
-/* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...) */
+/* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...), content and excerpt */
 $core->addBehavior('coreAfterPostContentFormat',array('adminTypo','updateTypoEntries'));
+
+/* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...), titles */
+$core->addBehavior('adminAfterPostCreate',array('adminTypo','updateTypoTitles'));
+$core->addBehavior('adminAfterPostUpdate',array('adminTypo','updateTypoTitles'));
 
 /* Add behavior callbacks, will be used for all comments (not trackbacks) */
 $core->addBehavior('coreBeforeCommentCreate',array('adminTypo','updateTypoComments'));
@@ -82,6 +86,10 @@ class adminTypo
 						if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
 							# Apply typo features to entry
 							$cur = $core->con->openCursor($core->prefix.'post');
+
+							if ($core->blog->settings->typo->typo_titles) {
+								$cur->post_title = SmartyPants($posts->post_title);
+							}
 
 							if ($posts->post_excerpt_xhtml)
 								$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
@@ -187,6 +195,20 @@ class adminTypo
 							$content = SmartyPants($content);
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	public static function updateTypoTitles($cur,$id=null)
+	{
+		global $core;
+		if ($core->blog->settings->typo->typo_active) {
+			if ($core->blog->settings->typo->typo_titles) {
+				/* Transform typo for entry's title */
+				if ($id != null) {
+					$cur->post_title = SmartyPants($cur->post_title);
+					$core->blog->updPost($id,$cur);
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
 # 
-# Copyright (c) 2011 Franck Paul and contributors
+# Copyright (c) 2012 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
 # 
 # Licensed under the GPL version 2.0 license.
@@ -30,6 +30,7 @@ try
 	// Default state is active for entries content and inactive for comments
 	$core->blog->settings->typo->put('typo_active',true,'boolean','Active',false,true);
 	$core->blog->settings->typo->put('typo_entries',true,'boolean','Apply on entries',false,true);
+	$core->blog->settings->typo->put('typo_titles',false,'boolean','Apply on titles',false,true);
 	$core->blog->settings->typo->put('typo_comments',false,'boolean','Apply on comments',false,true);
 
 	$core->setVersion('typo',$new_version);

@@ -2,7 +2,7 @@
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
 # 
-# Copyright (c) 2011 Franck Paul and contributors
+# Copyright (c) 2012 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
 # 
 # Licensed under the GPL version 2.0 license.
@@ -15,6 +15,7 @@ if (!defined('DC_CONTEXT_ADMIN')) { exit; }
 // Getting current parameters
 $typo_active = (boolean)$core->blog->settings->typo->typo_active;
 $typo_entries = (boolean)$core->blog->settings->typo->typo_entries;
+$typo_titles = (boolean)$core->blog->settings->typo->typo_titles;
 $typo_comments = (boolean)$core->blog->settings->typo->typo_comments;
 
 // Saving new configuration
@@ -25,9 +26,11 @@ if (!empty($_POST['saveconfig'])) {
 
 		$typo_active = (empty($_POST['active']))?false:true;
 		$typo_entries = (empty($_POST['entries']))?false:true;
+		$typo_titles = (empty($_POST['titles']))?false:true;
 		$typo_comments = (empty($_POST['comments']))?false:true;
 		$core->blog->settings->typo->put('typo_active',$typo_active,'boolean');
 		$core->blog->settings->typo->put('typo_entries',$typo_entries,'boolean');
+		$core->blog->settings->typo->put('typo_titles',$typo_titles,'boolean');
 		$core->blog->settings->typo->put('typo_comments',$typo_comments,'boolean');
 		$core->blog->triggerBlog();
 		$msg = __('Configuration successfully updated.');
@@ -66,15 +69,24 @@ if (!empty($_POST['saveconfig'])) {
 		</p>
 		<p class="form-note"><?php echo __('Activating this option enforces typographic replacements in blog entries'); ?></p>
 		<p class="field">
+			<?php echo form::checkbox('titles', 1, $typo_titles); ?>
+			<label class="classic" for="titles"><?php echo __('Enable Typo for titles'); ?></label>
+		</p>
+		<p class="form-note">
+			<?php echo __('Activating this option enforces typographic replacements in titles of blog entries'); ?><br />
+			<?php echo __('(only if also activated for blog entries, see previous option)'); ?>
+		</p>
+		<p class="field">
 			<?php echo form::checkbox('comments', 1, $typo_comments); ?>
 			<label class="classic" for="comments"><?php echo __('Enable Typo for comments'); ?></label>
 		</p>
 		<p class="form-note"><?php echo __('Activating this option enforces typographic replacements in blog comments (excluding trackbacks)'); ?></p>
 	</fieldset>
 
-	<p><input type="hidden" name="p" value="typo" />
-	<?php echo $core->formNonce(); ?>
-	<input type="submit" name="saveconfig" value="<?php echo __('Save configuration'); ?>" />
+	<p>
+		<input type="hidden" name="p" value="typo" />
+		<?php echo $core->formNonce(); ?>
+		<input type="submit" name="saveconfig" value="<?php echo __('Save configuration'); ?>" />
 	</p>
 	</form>
 </div>
