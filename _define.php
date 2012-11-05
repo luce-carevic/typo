@@ -11,8 +11,8 @@
 # -- END LICENSE BLOCK ------------------------------------
 
 $this->registerModule(
-	/* Name */				"Typo",
-	/* Description*/		"Brings smart typographic replacements for your blog entries and comments",
+	/* Name */				__("Typo"),
+	/* Description*/		__("Brings smart typographic replacements for your blog entries and comments"),
 	/* Author */			"Franck Paul",
 	/* Version */			'1.5.1',
 	/* Permissions */		'contentadmin'

@@ -4,39 +4,43 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Dotclear 2 typo extension\n"
+"Project-Id-Version: Dotclear 2 typo module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-05 19:57+0100\n"
-"PO-Revision-Date: 2009-10-30 08:24+0100\n"
+"POT-Creation-Date: 2012-11-05 17:37+0100\n"
+"PO-Revision-Date: 2012-11-05 17:39+0100\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
-"Language-Team: Franck Paul <franck.paul@free.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "Typo"
 msgstr "Typo"
 
-msgid "typographic features"
-msgstr "options typographiques"
-
-msgid "Apply typographic features to entries"
-msgstr "Appliquer les remplacements typographiques pour les billets"
-
-msgid "Apply typographic features to comments"
-msgstr "Appliquer les remplacements typographiques pour les commentaires"
+msgid "Typographic replacements"
+msgstr "Remplacements typographiques"
 
 msgid "Apply typographic replacements for selected entries"
-msgstr "Appliquer les remplacements typographiques pour les billets sélectionnés"
-
-msgid "Apply typographic replacements for selected comments"
-msgstr "Appliquer les remplacements typographiques pour les commentaires sélectionnés"
+msgstr ""
+"Appliquer les remplacements typographiques pour les billets sélectionnés"
 
 msgid "Warning! These replacements will not be undoable."
 msgstr "Attention ces remplacements sont irréversibles."
+
+msgid "save"
+msgstr "enregistrer"
+
+msgid "Apply typographic replacements for selected comments"
+msgstr ""
+"Appliquer les remplacements typographiques pour les commentaires sélectionnés"
+
+msgid ""
+"Brings smart typographic replacements for your blog entries and comments"
+msgstr ""
+"Applique des remplacements typographiques pour les billets et les "
+"commentaires de votre blog"
 
 msgid "Configuration successfully updated."
 msgstr "La configuration a été correctement enregistrée"
@@ -53,17 +57,30 @@ msgstr "Options"
 msgid "Enable Typo for entries"
 msgstr "Activer l'extension pour les billets de ce blog"
 
-msgid "Activating this option enforces typographic replacements in blog entries"
-msgstr "Activer cette extension permet le remplacement des éléments typographiques dans le contenu des billets de ce blog"
+msgid ""
+"Activating this option enforces typographic replacements in blog entries"
+msgstr ""
+"Activer cette extension permet le remplacement des éléments typographiques "
+"dans le contenu des billets de ce blog"
 
 msgid "Enable Typo for comments"
 msgstr "Activer l'extension pour les commentaires également"
 
-msgid "Activating this option enforces typographic replacements in blog comments (excluding trackbacks)"
-msgstr "Activer cette option permet le remplacement des éléments typographiques pour les commentaires (rétroliens exclus)"
+msgid ""
+"Activating this option enforces typographic replacements in blog comments "
+"(excluding trackbacks)"
+msgstr ""
+"Activer cette option permet le remplacement des éléments typographiques pour "
+"les commentaires (rétroliens exclus)"
 
 msgid "Save configuration"
 msgstr "Enregistrer la configuration"
 
-msgid "Typographic replacements"
-msgstr "Remplacements typographiques"
+#~ msgid "typographic features"
+#~ msgstr "options typographiques"
+
+#~ msgid "Apply typographic features to entries"
+#~ msgstr "Appliquer les remplacements typographiques pour les billets"
+
+#~ msgid "Apply typographic features to comments"
+#~ msgstr "Appliquer les remplacements typographiques pour les commentaires"
