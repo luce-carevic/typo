@@ -46,7 +46,7 @@ if (!empty($_POST['saveconfig'])) {
 <body>
 <h2><?php echo html::escapeHTML($core->blog->name); ?> &gt; <?php echo __('Typo'); ?></h2>
 
-<?php if (!empty($msg)) echo '<p class="message">'.$msg.'</p>'; ?>
+<?php if (!empty($msg)) dcPage::message($msg); ?>
 
 <div id="typo_options">
 	<form method="post" action="plugin.php">

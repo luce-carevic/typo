@@ -58,7 +58,7 @@ class adminTypo
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
 			' '.__('Apply typographic replacements for selected entries').'</label></p>'.
 			
-			'<p class="message">'.__('Warning! These replacements will not be undoable.').'</p>'.
+			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
 			
 			$hidden_fields.
 			$core->formNonce().
@@ -123,7 +123,7 @@ class adminTypo
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
 			' '.__('Apply typographic replacements for selected comments').'</label></p>'.
 			
-			'<p class="message">'.__('Warning! These replacements will not be undoable.').'</p>'.
+			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
 			
 			$hidden_fields.
 			$core->formNonce().
