@@ -54,9 +54,9 @@ class adminTypo
 
 			'<form action="posts_actions.php" method="post">'.
 
-			'<p><label class="classic">'.
+			'<p>'.
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
-			' '.__('Apply typographic replacements for selected entries').'</label></p>'.
+			' <label class="classic" for="set_typo">'.__('Apply typographic replacements for selected entries').'</label></p>'.
 			
 			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
 			
@@ -119,9 +119,9 @@ class adminTypo
 
 			'<form action="comments_actions.php" method="post">'.
 
-			'<p><label class="classic">'.
+			'<p>'.
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
-			' '.__('Apply typographic replacements for selected comments').'</label></p>'.
+			' <label for="set_typo" class="classic">'.__('Apply typographic replacements for selected comments').'</label></p>'.
 			
 			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
 			
