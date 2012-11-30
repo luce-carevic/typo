@@ -168,24 +168,20 @@ class adminTypo
 	public static function updateTypoEntries($ref)
 	{
 		global $core;
-		if ($core->blog->settings->typo->typo_active) {
+		if ($core->blog->settings->typo->typo_active && $core->blog->settings->typo->typo_entries) {
 			if (@is_array($ref)) {
 				/* Transform typo for excerpt (XHTML) */
 				if (isset($ref['excerpt_xhtml'])) {
 					$excerpt = &$ref['excerpt_xhtml'];
 					if ($excerpt) {
-						if ($core->blog->settings->typo->typo_entries) {
-							$excerpt = SmartyPants($excerpt);
-						}
+						$excerpt = SmartyPants($excerpt);
 					}
 				}
 				/* Transform typo for content (XHTML) */
 				if (isset($ref['content_xhtml'])) {
 					$content = &$ref['content_xhtml'];
 					if ($content) {
-						if ($core->blog->settings->typo->typo_entries) {
-							$content = SmartyPants($content);
-						}
+						$content = SmartyPants($content);
 					}
 				}
 			}
@@ -200,8 +196,7 @@ class adminTypo
 			/* Transform typo for comment content (XHTML) */
 			if (!(boolean)$cur->comment_trackback) {
 				if ($cur->comment_content != null) {
-					if ($core->blog->settings->typo->typo_comments)
-						$cur->comment_content = SmartyPants($cur->comment_content);
+					$cur->comment_content = SmartyPants($cur->comment_content);
 				}
 			}
 		}
