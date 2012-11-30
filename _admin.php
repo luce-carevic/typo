@@ -27,6 +27,7 @@ $_menu['Plugins']->addItem(__('Typo'),'plugin.php?p=typo','index.php?pf=typo/ico
 
 /* Add behavior callbacks for posts actions */
 $core->addBehavior('adminPostsActionsCombo',array('adminTypo','adminPostsActionsCombo'));
+$core->addBehavior('adminPagesActionsCombo',array('adminTypo','adminPostsActionsCombo'));
 $core->addBehavior('adminPostsActions',array('adminTypo','adminPostsActions'));
 $core->addBehavior('adminPostsActionsContent',array('adminTypo','adminPostsActionsContent'));
 
