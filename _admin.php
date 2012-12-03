@@ -25,6 +25,8 @@ $_menu['Plugins']->addItem(__('Typo'),'plugin.php?p=typo','index.php?pf=typo/ico
 		preg_match('/plugin.php\?p=typo(&.*)?$/',$_SERVER['REQUEST_URI']),
 		$core->auth->check('contentadmin',$core->blog->id));
 
+$core->addBehavior('adminDashboardFavs',array('adminTypo','adminDashboardFavs'));
+
 /* Add behavior callbacks for posts actions */
 $core->addBehavior('adminPostsActionsCombo',array('adminTypo','adminPostsActionsCombo'));
 $core->addBehavior('adminPagesActionsCombo',array('adminTypo','adminPostsActionsCombo'));
@@ -38,6 +40,13 @@ $core->addBehavior('adminCommentsActionsContent',array('adminTypo','adminComment
 
 class adminTypo
 {
+	public static function adminDashboardFavs($core,$favs)
+	{
+		$favs['Typo'] = new ArrayObject(array('Typo','Typographic replacements','plugin.php?p=typo',
+			'index.php?pf=typo/icon.png','index.php?pf=typo/icon-big.png',
+			$core->auth->check('contentadmin',$core->blog->id),null,null));
+	}
+
 	public static function adminPostsActionsCombo($args)
 	{
 		global $core;
