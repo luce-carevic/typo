@@ -1,16 +1,15 @@
 <?php
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
-# 
+#
 # Copyright (c) 2011 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
-# 
+#
 # Licensed under the GPL version 2.0 license.
 # A copy of this license is available in LICENSE file or at
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
- 
 require_once dirname(__FILE__).'/inc/smartypants.php';
 
 /* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...) */
@@ -21,7 +20,7 @@ $core->addBehavior('coreBeforeCommentCreate',array('adminTypo','updateTypoCommen
 $core->addBehavior('coreBeforeCommentUpdate',array('adminTypo','updateTypoComments'));
 
 /* Add menu item in extension list */
-$_menu['Plugins']->addItem(__('Typo'),'plugin.php?p=typo','index.php?pf=typo/icon.png',
+$_menu['Blog']->addItem(__('Typographic replacements'),'plugin.php?p=typo','index.php?pf=typo/icon.png',
 		preg_match('/plugin.php\?p=typo(&.*)?$/',$_SERVER['REQUEST_URI']),
 		$core->auth->check('contentadmin',$core->blog->id));
 
@@ -59,17 +58,19 @@ class adminTypo
 	{
 		if ($action == 'typo')
 		{
+			echo dcPage::breadcrumb(
+				array(
+					html::escapeHTML($core->blog->name) => '',
+					'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+				));
+
+			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
+
 			echo
-			'<h2>'.__('Typographic replacements').'</h2>'.
-
 			'<form action="posts_actions.php" method="post">'.
-
 			'<p>'.
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
 			' <label class="classic" for="set_typo">'.__('Apply typographic replacements for selected entries').'</label></p>'.
-			
-			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
-			
 			$hidden_fields.
 			$core->formNonce().
 			form::hidden(array('action'),'typo').
@@ -78,7 +79,7 @@ class adminTypo
 			'</form>';
 		}
 	}
-	
+
 	public static function adminPostsActions($core,$posts,$action,$redir)
 	{
 		if ($action == 'typo' && !empty($_POST['set_typo'])
@@ -102,7 +103,7 @@ class adminTypo
 						}
 					}
 				}
-				
+
 				http::redirect($redir);
 			}
 			catch (Exception $e)
@@ -124,17 +125,19 @@ class adminTypo
 	{
 		if ($action == 'typo')
 		{
+			echo dcPage::breadcrumb(
+				array(
+					html::escapeHTML($core->blog->name) => '',
+					'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+				));
+
+			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
+
 			echo
-			'<h2>'.__('Typographic replacements').'</h2>'.
-
 			'<form action="comments_actions.php" method="post">'.
-
 			'<p>'.
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
 			' <label for="set_typo" class="classic">'.__('Apply typographic replacements for selected comments').'</label></p>'.
-			
-			dcPage::message(__('Warning! These replacements will not be undoable.'),false,false,false).
-			
 			$hidden_fields.
 			$core->formNonce().
 			form::hidden(array('action'),'typo').
@@ -143,7 +146,7 @@ class adminTypo
 			'</form>';
 		}
 	}
-	
+
 	public static function adminCommentsActions($core,$co,$action,$redir)
 	{
 		if ($action == 'typo' && !empty($_POST['set_typo'])
@@ -165,7 +168,7 @@ class adminTypo
 						}
 					}
 				}
-				
+
 				http::redirect($redir);
 			}
 			catch (Exception $e)
@@ -197,7 +200,7 @@ class adminTypo
 			}
 		}
 	}
-	
+
 	public static function updateTypoComments($blog,$cur)
 	{
 		global $core;

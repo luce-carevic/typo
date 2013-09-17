@@ -1,10 +1,10 @@
 <?php
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
-# 
+#
 # Copyright (c) 2011 Franck Paul and contributors
 # carnet.franck.paul@gmail.com
-# 
+#
 # Licensed under the GPL version 2.0 license.
 # A copy of this license is available in LICENSE file or at
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -44,40 +44,40 @@ if (!empty($_POST['saveconfig'])) {
 </head>
 
 <body>
-<h2><?php echo html::escapeHTML($core->blog->name); ?> &rsaquo; <span class="page-title"><?php echo __('Typo'); ?></span></h2>
+<?php
+echo dcPage::breadcrumb(
+	array(
+		html::escapeHTML($core->blog->name) => '',
+		'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+	));
+?>
 
-<?php if (!empty($msg)) dcPage::message($msg); ?>
+<?php if (!empty($msg)) dcPage::success($msg); ?>
 
-<div id="typo_options">
-	<form method="post" action="plugin.php">
-	<fieldset>
-		<legend><?php echo __('Plugin activation'); ?></legend>
-		<p class="field">
-			<?php echo form::checkbox('active', 1, $typo_active); ?>
-			<label class="classic" for="active"><?php echo __('Enable Typo for this blog'); ?></label>
-		</p>
-	</fieldset>
+<form method="post" action="plugin.php">
+	<p>
+		<?php echo form::checkbox('active', 1, $typo_active); ?>
+		<label class="classic" for="active"><?php echo __('Enable typographic replacements for this blog'); ?></label>
+	</p>
 
-	<fieldset>
-		<legend><?php echo __('Options'); ?></legend>
-		<p class="field">
-			<?php echo form::checkbox('entries', 1, $typo_entries); ?>
-			<label class="classic" for="entries"><?php echo __('Enable Typo for entries'); ?></label>
-		</p>
-		<p class="form-note"><?php echo __('Activating this option enforces typographic replacements in blog entries'); ?></p>
-		<p class="field">
-			<?php echo form::checkbox('comments', 1, $typo_comments); ?>
-			<label class="classic" for="comments"><?php echo __('Enable Typo for comments'); ?></label>
-		</p>
-		<p class="form-note"><?php echo __('Activating this option enforces typographic replacements in blog comments (excluding trackbacks)'); ?></p>
-	</fieldset>
+	<div class="fieldset">
+	<h3><?php echo __('Options'); ?></h3>
+	<p>
+		<?php echo form::checkbox('entries', 1, $typo_entries); ?>
+		<label class="classic" for="entries"><?php echo __('Enable typographic replacements for entries'); ?></label>
+	</p>
+	<p>
+		<?php echo form::checkbox('comments', 1, $typo_comments); ?>
+		<label class="classic" for="comments"><?php echo __('Enable typographic replacements for comments'); ?></label>
+	</p>
+	<p class="form-note"><?php echo __('Excluding trackbacks'); ?></p>
+	</div>
 
 	<p><input type="hidden" name="p" value="typo" />
 	<?php echo $core->formNonce(); ?>
 	<input type="submit" name="saveconfig" value="<?php echo __('Save configuration'); ?>" />
-	</p>
-	</form>
-</div>
+</p>
+</form>
 
 </body>
 </html>

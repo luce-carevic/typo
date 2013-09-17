@@ -23,8 +23,7 @@ msgid "Typographic replacements"
 msgstr "Remplacements typographiques"
 
 msgid "Apply typographic replacements for selected entries"
-msgstr ""
-"Appliquer les remplacements typographiques pour les billets sélectionnés"
+msgstr "Appliquer les remplacements typographiques pour les billets sélectionnés"
 
 msgid "Warning! These replacements will not be undoable."
 msgstr "Attention ces remplacements sont irréversibles."
@@ -33,54 +32,28 @@ msgid "save"
 msgstr "enregistrer"
 
 msgid "Apply typographic replacements for selected comments"
-msgstr ""
-"Appliquer les remplacements typographiques pour les commentaires sélectionnés"
+msgstr "Appliquer les remplacements typographiques pour les commentaires sélectionnés"
 
-msgid ""
-"Brings smart typographic replacements for your blog entries and comments"
-msgstr ""
-"Applique des remplacements typographiques pour les billets et les "
-"commentaires de votre blog"
+msgid "Brings smart typographic replacements for your blog entries and comments"
+msgstr "Applique des remplacements typographiques pour les billets et les commentaires de votre blog"
 
 msgid "Configuration successfully updated."
 msgstr "La configuration a été correctement enregistrée"
 
-msgid "Plugin activation"
-msgstr "Activation de l'extension"
-
-msgid "Enable Typo for this blog"
-msgstr "Activer l'extension pour ce blog"
+msgid "Enable typographic replacements for this blog"
+msgstr "Activer les remplacements typographiques pour ce blog"
 
 msgid "Options"
 msgstr "Options"
 
-msgid "Enable Typo for entries"
-msgstr "Activer l'extension pour les billets de ce blog"
+msgid "Enable typographic replacements for entries"
+msgstr "Activer les remplacements typographiques pour les billets de ce blog"
 
-msgid ""
-"Activating this option enforces typographic replacements in blog entries"
-msgstr ""
-"Activer cette extension permet le remplacement des éléments typographiques "
-"dans le contenu des billets de ce blog"
+msgid "Enable typographic replacements for comments"
+msgstr "Activer les remplacements typographiques pour les commentaires de ce blog"
 
-msgid "Enable Typo for comments"
-msgstr "Activer l'extension pour les commentaires également"
-
-msgid ""
-"Activating this option enforces typographic replacements in blog comments "
-"(excluding trackbacks)"
-msgstr ""
-"Activer cette option permet le remplacement des éléments typographiques pour "
-"les commentaires (rétroliens exclus)"
+msgid "Excluding trackbacks"
+msgstr "Rétroliens exclus"
 
 msgid "Save configuration"
 msgstr "Enregistrer la configuration"
-
-#~ msgid "typographic features"
-#~ msgstr "options typographiques"
-
-#~ msgid "Apply typographic features to entries"
-#~ msgstr "Appliquer les remplacements typographiques pour les billets"
-
-#~ msgid "Apply typographic features to comments"
-#~ msgstr "Appliquer les remplacements typographiques pour les commentaires"
