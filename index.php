@@ -60,7 +60,6 @@ echo dcPage::breadcrumb(
 		<label class="classic" for="active"><?php echo __('Enable typographic replacements for this blog'); ?></label>
 	</p>
 
-	<div class="fieldset">
 	<h3><?php echo __('Options'); ?></h3>
 	<p>
 		<?php echo form::checkbox('entries', 1, $typo_entries); ?>
@@ -71,7 +70,6 @@ echo dcPage::breadcrumb(
 		<label class="classic" for="comments"><?php echo __('Enable typographic replacements for comments'); ?></label>
 	</p>
 	<p class="form-note"><?php echo __('Excluding trackbacks'); ?></p>
-	</div>
 
 	<p><input type="hidden" name="p" value="typo" />
 	<?php echo $core->formNonce(); ?>
