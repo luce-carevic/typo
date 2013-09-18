@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Dotclear 2 typo module\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-18 17:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../hg-plugins/typo/_admin.php:23 ../hg-plugins/typo/_admin.php:54
+#: ../hg-plugins/typo/_admin.php:64 ../hg-plugins/typo/_admin.php:121
+#: ../hg-plugins/typo/_admin.php:131 ../hg-plugins/typo/index.php:51
+msgid "Typographic replacements"
+msgstr ""
+
+#: ../hg-plugins/typo/_admin.php:54 ../hg-plugins/typo/_admin.php:121
+#: ../hg-plugins/typo/index.php:43
+msgid "Typo"
+msgstr ""
+
+#: ../hg-plugins/typo/_admin.php:67 ../hg-plugins/typo/_admin.php:134
+msgid "Warning! These replacements will not be undoable."
+msgstr ""
+
+#: ../hg-plugins/typo/_admin.php:73
+msgid "Apply typographic replacements for selected entries"
+msgstr ""
+
+#: ../hg-plugins/typo/_admin.php:78 ../hg-plugins/typo/_admin.php:145
+msgid "save"
+msgstr ""
+
+#: ../hg-plugins/typo/_admin.php:140
+msgid "Apply typographic replacements for selected comments"
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:33
+msgid "Configuration successfully updated."
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:60
+msgid "Enable typographic replacements for this blog"
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:66
+msgid "Enable typographic replacements for entries"
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:70
+msgid "Enable typographic replacements for comments"
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:72
+msgid "Excluding trackbacks"
+msgstr ""
+
+#: ../hg-plugins/typo/index.php:76
+msgid "Save configuration"
+msgstr ""
