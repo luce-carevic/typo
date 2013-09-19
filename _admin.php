@@ -10,6 +10,11 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
+if (!defined('DC_CONTEXT_ADMIN')) { return; }
+
+/* Name */			__('Typo');
+/* Description*/	__('Brings smart typographic replacements for your blog entries and comments');
+
 require_once dirname(__FILE__).'/inc/smartypants.php';
 
 /* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...) */

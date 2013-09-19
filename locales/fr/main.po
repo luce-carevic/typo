@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 typo module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-18 17:10+0200\n"
+"POT-Creation-Date: 2013-09-19 07:55+0200\n"
 "PO-Revision-Date: 2012-11-05 17:39+0100\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -16,11 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-msgid "Typographic replacements"
-msgstr "Remplacements typographiques"
-
 msgid "Typo"
 msgstr "Typo"
+
+msgid "Brings smart typographic replacements for your blog entries and comments"
+msgstr "Applique des remplacements typographiques pour les billets et les commentaires de votre blog"
+
+msgid "Typographic replacements"
+msgstr "Remplacements typographiques"
 
 msgid "Warning! These replacements will not be undoable."
 msgstr "Attention ces remplacements sont irréversibles."
@@ -51,9 +54,6 @@ msgstr "Rétroliens exclus"
 
 msgid "Save configuration"
 msgstr "Enregistrer la configuration"
-
-msgid "Brings smart typographic replacements for your blog entries and comments"
-msgstr "Applique des remplacements typographiques pour les billets et les commentaires de votre blog"
 
 #~ msgid "Options"
 #~ msgstr "Options"

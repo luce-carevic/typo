@@ -1,16 +1,15 @@
 <?php
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
-# 
-# Copyright (c) 2011 Franck Paul and contributors
+#
+# Copyright (c) Franck Paul and contributors
 # carnet.franck.paul@gmail.com
-# 
+#
 # Licensed under the GPL version 2.0 license.
 # A copy of this license is available in LICENSE file or at
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
- 
 require_once dirname(__FILE__).'/inc/smartypants.php';
 
 /* Add behavior callback for typo replacement in comments */
