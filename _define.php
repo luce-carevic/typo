@@ -10,6 +10,8 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
+if (!defined('DC_CONTEXT_ADMIN')) { return; }
+
 $this->registerModule(
 	/* Name */				"Typo",
 	/* Description*/		"Brings smart typographic replacements for your blog entries and comments",

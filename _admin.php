@@ -2,7 +2,7 @@
 # -- BEGIN LICENSE BLOCK ----------------------------------
 # This file is part of typo, a plugin for Dotclear 2.
 #
-# Copyright (c) 2011 Franck Paul and contributors
+# Copyright (c) Franck Paul and contributors
 # carnet.franck.paul@gmail.com
 #
 # Licensed under the GPL version 2.0 license.
@@ -11,9 +11,6 @@
 # -- END LICENSE BLOCK ------------------------------------
 
 if (!defined('DC_CONTEXT_ADMIN')) { return; }
-
-/* Name */			__('Typo');
-/* Description*/	__('Brings smart typographic replacements for your blog entries and comments');
 
 require_once dirname(__FILE__).'/inc/smartypants.php';
 

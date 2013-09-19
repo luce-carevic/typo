@@ -10,6 +10,8 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
+if (!defined('DC_RC_PATH')) { return; }
+
 require_once dirname(__FILE__).'/inc/smartypants.php';
 
 /* Add behavior callback for typo replacement in comments */
