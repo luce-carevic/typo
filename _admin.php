@@ -56,24 +56,33 @@ class adminTypo
 			$args[0][__('Typo')] = array(__('Typographic replacements') => 'typo');
 	}
 
-	public static function adminPostsActionsContent($core,$action,$hidden_fields)
+	public static function adminPostsActionsContent($core,$action,$hidden_fields,$form_uri="posts_actions.php")
 	{
 		if ($action == 'typo')
 		{
-			echo dcPage::breadcrumb(
-				array(
-					html::escapeHTML($core->blog->name) => '',
-					'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
-				));
+			$redir = (isset($_POST['redir']) ? $_POST['redir'] : '');
+			if (isset($_POST['post_type']) && $_POST['post_type'] == 'page') {
+				echo dcPage::breadcrumb(
+					array(
+						html::escapeHTML($core->blog->name) => '',
+						__('Pages') => ($redir != '' ? $redir : 'plugin.php?p=pages'),
+						'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+					));
+			} else {
+				echo dcPage::breadcrumb(
+					array(
+						html::escapeHTML($core->blog->name) => '',
+						__('Entries') => ($redir != '' ? $redir : 'posts.php'),
+						'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+					));
+			}
 
 			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
 
 			echo
-			'<form action="posts_actions.php" method="post">'.
-			'<p>'.
-			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
-			' <label class="classic" for="set_typo">'.__('Apply typographic replacements for selected entries').'</label></p>'.
-			$hidden_fields.
+			'<form action="'.$form_uri.'" method="post">'.
+			$hidden_fields->getEntries().
+			$hidden_fields->getHidden().
 			$core->formNonce().
 			form::hidden(array('action'),'typo').
 			form::hidden(array('full_content'),'true').
@@ -89,20 +98,18 @@ class adminTypo
 		{
 			try
 			{
-				if ((boolean)$_POST['set_typo']) {
-					while ($posts->fetch())
-					{
-						if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
-							# Apply typo features to entry
-							$cur = $core->con->openCursor($core->prefix.'post');
+				while ($posts->fetch())
+				{
+					if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
+						# Apply typo features to entry
+						$cur = $core->con->openCursor($core->prefix.'post');
 
-							if ($posts->post_excerpt_xhtml)
-								$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
-							if ($posts->post_content_xhtml)
-								$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml);
+						if ($posts->post_excerpt_xhtml)
+							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
+						if ($posts->post_content_xhtml)
+							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml);
 
-							$cur->update('WHERE post_id = '.(integer) $posts->post_id);
-						}
+						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
 				}
 
@@ -123,20 +130,21 @@ class adminTypo
 			$args[0][__('Typo')] = array(__('Typographic replacements') => 'typo');
 	}
 
-	public static function adminCommentsActionsContent($core,$action,$hidden_fields)
+	public static function adminCommentsActionsContent($core,$action,$hidden_fields,$form_uri="comments_actions.php")
 	{
 		if ($action == 'typo')
 		{
 			echo dcPage::breadcrumb(
 				array(
 					html::escapeHTML($core->blog->name) => '',
+					__('Comments') => 'comments.php',
 					'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
 				));
 
 			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
 
 			echo
-			'<form action="comments_actions.php" method="post">'.
+			'<form action="'.$form_uri.'" method="post">'.
 			'<p>'.
 			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
 			' <label for="set_typo" class="classic">'.__('Apply typographic replacements for selected comments').'</label></p>'.
