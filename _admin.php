@@ -81,8 +81,7 @@ class adminTypo
 
 			echo
 			'<form action="'.$form_uri.'" method="post">'.
-			$hidden_fields->getEntries().
-			$hidden_fields->getHidden().
+			$hidden_fields.
 			$core->formNonce().
 			form::hidden(array('action'),'typo').
 			form::hidden(array('full_content'),'true').
