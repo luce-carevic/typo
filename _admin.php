@@ -58,55 +58,6 @@ class adminTypo
 		}
 	}
 
-	public static function adminPostsDoReplacements($core,dcPostsActionsPage $ap,$post)
-	{
-		if (!empty($post['full_content'])) {
-			// Do replacements
-			$posts = $ap->getRS();
-			if ($posts->rows()) {
-				while ($posts->fetch())
-				{
-					if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
-						# Apply typo features to entry
-						$cur = $core->con->openCursor($core->prefix.'post');
-
-						if ($posts->post_excerpt_xhtml)
-							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
-						if ($posts->post_content_xhtml)
-							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml);
-
-						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
-					}
-				}
-				$ap->redirect(array('upd' => 1),true);
-			} else {
-				$ap->redirect();
-			}
-		} else {
-			// Ask confirmation for replacements
-			$ap->beginPage(
-				dcPage::breadcrumb(
-						array(
-							html::escapeHTML($core->blog->name) => '',
-							__('Entries') => 'posts.php',
-							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
-			)));
-
-			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
-
-			echo
-			'<form action="'.$ap->getURI().'" method="post">'.
-			$ap->getCheckboxes().
-			'<p><input type="submit" value="'.__('save').'" /></p>'.
-
-			$core->formNonce().$ap->getHiddenFields().
-			form::hidden(array('full_content'),'true').
-			form::hidden(array('action'),'typo').
-			'</form>';
-			$ap->endPage();
-		}
-	}
-
 	public static function adminPagesActionsPage($core,$ap)
 	{
 		// Add menuitem in actions dropdown list
@@ -118,7 +69,17 @@ class adminTypo
 		}
 	}
 
+	public static function adminPostsDoReplacements($core,dcPostsActionsPage $ap,$post)
+	{
+		self::adminEntriesDoReplacements($core,$ap,$post,'post');
+	}
+
 	public static function adminPagesDoReplacements($core,dcPostsActionsPage $ap,$post)
+	{
+		self::adminEntriesDoReplacements($core,$ap,$post,'page');
+	}
+
+	public static function adminEntriesDoReplacements($core,dcPostsActionsPage $ap,$post,$type='post')
 	{
 		if (!empty($post['full_content'])) {
 			// Do replacements
@@ -144,13 +105,23 @@ class adminTypo
 			}
 		} else {
 			// Ask confirmation for replacements
-			$ap->beginPage(
-				dcPage::breadcrumb(
+			if ($type == 'page') {
+				$ap->beginPage(
+					dcPage::breadcrumb(
 						array(
 							html::escapeHTML($core->blog->name) => '',
 							__('Pages') => 'plugin.php?p=pages',
 							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+				)));
+			} else {
+				$ap->beginPage(
+					dcPage::breadcrumb(
+						array(
+							html::escapeHTML($core->blog->name) => '',
+							__('Entries') => 'posts.php',
+							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
 			)));
+			}
 
 			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
 
