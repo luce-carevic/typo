@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 typo module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-19 07:55+0200\n"
+"POT-Creation-Date: 2013-09-24 13:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,54 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../hg-plugins/typo/_admin.php:15 ../hg-plugins/typo/_admin.php:59
-#: ../hg-plugins/typo/_admin.php:126 ../hg-plugins/typo/index.php:43
-msgid "Typo"
-msgstr ""
-
-#: ../hg-plugins/typo/_admin.php:16
+#: ../hg-plugins/typo//_admin.php:16
 msgid "Brings smart typographic replacements for your blog entries and comments"
 msgstr ""
 
-#: ../hg-plugins/typo/_admin.php:28 ../hg-plugins/typo/_admin.php:59
-#: ../hg-plugins/typo/_admin.php:69 ../hg-plugins/typo/_admin.php:126
-#: ../hg-plugins/typo/_admin.php:136 ../hg-plugins/typo/index.php:51
+#: ../hg-plugins/typo//_admin.php:16 ../hg-plugins/typo//_admin.php:59
+#: ../hg-plugins/typo//_admin.php:132 ../hg-plugins/typo//index.php:43
+msgid "Typo"
+msgstr ""
+
+#: ../hg-plugins/typo//_admin.php:28 ../hg-plugins/typo//_admin.php:59
+#: ../hg-plugins/typo//_admin.php:72 ../hg-plugins/typo//_admin.php:79
+#: ../hg-plugins/typo//_admin.php:132 ../hg-plugins/typo//_admin.php:143
+#: ../hg-plugins/typo//index.php:51
 msgid "Typographic replacements"
 msgstr ""
 
-#: ../hg-plugins/typo/_admin.php:72 ../hg-plugins/typo/_admin.php:139
+#: ../hg-plugins/typo//_admin.php:83 ../hg-plugins/typo//_admin.php:146
 msgid "Warning! These replacements will not be undoable."
 msgstr ""
 
-#: ../hg-plugins/typo/_admin.php:78
-msgid "Apply typographic replacements for selected entries"
-msgstr ""
-
-#: ../hg-plugins/typo/_admin.php:83 ../hg-plugins/typo/_admin.php:150
+#: ../hg-plugins/typo//_admin.php:91 ../hg-plugins/typo//_admin.php:157
 msgid "save"
 msgstr ""
 
-#: ../hg-plugins/typo/_admin.php:145
+#: ../hg-plugins/typo//_admin.php:152
 msgid "Apply typographic replacements for selected comments"
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:33
+#: ../hg-plugins/typo//index.php:33
 msgid "Configuration successfully updated."
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:60
+#: ../hg-plugins/typo//index.php:60
 msgid "Enable typographic replacements for this blog"
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:66
+#: ../hg-plugins/typo//index.php:66
 msgid "Enable typographic replacements for entries"
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:70
+#: ../hg-plugins/typo//index.php:70
 msgid "Enable typographic replacements for comments"
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:72
+#: ../hg-plugins/typo//index.php:72
 msgid "Excluding trackbacks"
 msgstr ""
 
-#: ../hg-plugins/typo/index.php:76
+#: ../hg-plugins/typo//index.php:76
 msgid "Save configuration"
 msgstr ""
