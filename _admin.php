@@ -32,15 +32,11 @@ $_menu['Blog']->addItem(__('Typographic replacements'),'plugin.php?p=typo','inde
 $core->addBehavior('adminDashboardFavs',array('adminTypo','adminDashboardFavs'));
 
 /* Add behavior callbacks for posts actions */
-$core->addBehavior('adminPostsActionsCombo',array('adminTypo','adminPostsActionsCombo'));
-$core->addBehavior('adminPagesActionsCombo',array('adminTypo','adminPostsActionsCombo'));
-$core->addBehavior('adminPostsActions',array('adminTypo','adminPostsActions'));
-$core->addBehavior('adminPostsActionsContent',array('adminTypo','adminPostsActionsContent'));
+$core->addBehavior('adminPostsActionsPage',array('adminTypo','adminPostsActionsPage'));
+$core->addBehavior('adminPagesActionsPage',array('adminTypo','adminPagesActionsPage'));
 
 /* Add behavior callbacks for comments actions */
-$core->addBehavior('adminCommentsActionsCombo',array('adminTypo','adminCommentsActionsCombo'));
-$core->addBehavior('adminCommentsActions',array('adminTypo','adminCommentsActions'));
-$core->addBehavior('adminCommentsActionsContent',array('adminTypo','adminCommentsActionsContent'));
+$core->addBehavior('adminCommentsActionsPage',array('adminTypo','adminCommentsActionsPage'));
 
 class adminTypo
 {
@@ -51,55 +47,23 @@ class adminTypo
 			$core->auth->check('contentadmin',$core->blog->id),null,null));
 	}
 
-	public static function adminPostsActionsCombo($args)
+	public static function adminPostsActionsPage($core,$ap)
 	{
-		global $core;
 		// Add menuitem in actions dropdown list
-		if ($core->auth->check('contentadmin',$core->blog->id))
-			$args[0][__('Typo')] = array(__('Typographic replacements') => 'typo');
-	}
-
-	public static function adminPostsActionsContent($core,$action,$hidden_fields,$form_uri="posts_actions.php")
-	{
-		if ($action == 'typo')
-		{
-			$redir = (isset($_POST['redir']) ? $_POST['redir'] : '');
-			if (isset($_POST['post_type']) && $_POST['post_type'] == 'page') {
-				echo dcPage::breadcrumb(
-					array(
-						html::escapeHTML($core->blog->name) => '',
-						__('Pages') => ($redir != '' ? $redir : 'plugin.php?p=pages'),
-						'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
-					));
-			} else {
-				echo dcPage::breadcrumb(
-					array(
-						html::escapeHTML($core->blog->name) => '',
-						__('Entries') => ($redir != '' ? $redir : 'posts.php'),
-						'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
-					));
-			}
-
-			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
-
-			echo
-			'<form action="'.$form_uri.'" method="post">'.
-			$hidden_fields.
-			$core->formNonce().
-			form::hidden(array('action'),'typo').
-			form::hidden(array('full_content'),'true').
-			'<p><input type="submit" value="'.__('save').'" /></p>'.
-			'</form>';
+		if ($core->auth->check('contentadmin',$core->blog->id)) {
+			$ap->addAction(
+				array(__('Typo') => array(__('Typographic replacements') => 'typo')),
+				array('adminTypo','adminPostsDoReplacements')
+			);
 		}
 	}
 
-	public static function adminPostsActions($core,$posts,$action,$redir)
+	public static function adminPostsDoReplacements($core,dcPostsActionsPage $ap,$post)
 	{
-		if ($action == 'typo' && !empty($_POST['set_typo'])
-			&& $core->auth->check('contentadmin',$core->blog->id))
-		{
-			try
-			{
+		if (!empty($post['full_content'])) {
+			// Do replacements
+			$posts = $ap->getRS();
+			if ($posts->rows()) {
 				while ($posts->fetch())
 				{
 					if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
@@ -114,79 +78,147 @@ class adminTypo
 						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
 				}
-
-				http::redirect($redir);
+				$ap->redirect(array('upd' => 1),true);
+			} else {
+				$ap->redirect();
 			}
-			catch (Exception $e)
-			{
-				$core->error->add($e->getMessage());
-			}
-		}
-	}
-
-	public static function adminCommentsActionsCombo($args)
-	{
-		global $core;
-		// Add menuitem in actions dropdown list
-		if ($core->auth->check('contentadmin',$core->blog->id))
-			$args[0][__('Typo')] = array(__('Typographic replacements') => 'typo');
-	}
-
-	public static function adminCommentsActionsContent($core,$action,$hidden_fields,$form_uri="comments_actions.php")
-	{
-		if ($action == 'typo')
-		{
-			echo dcPage::breadcrumb(
-				array(
-					html::escapeHTML($core->blog->name) => '',
-					__('Comments') => 'comments.php',
-					'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
-				));
+		} else {
+			// Ask confirmation for replacements
+			$ap->beginPage(
+				dcPage::breadcrumb(
+						array(
+							html::escapeHTML($core->blog->name) => '',
+							__('Entries') => 'posts.php',
+							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+			)));
 
 			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
 
 			echo
-			'<form action="'.$form_uri.'" method="post">'.
-			'<p>'.
-			form::checkbox('set_typo','1',$core->blog->settings->typo->typo_active).
-			' <label for="set_typo" class="classic">'.__('Apply typographic replacements for selected comments').'</label></p>'.
-			$hidden_fields.
-			$core->formNonce().
-			form::hidden(array('action'),'typo').
-			form::hidden(array('full_content'),'true').
+			'<form action="'.$ap->getURI().'" method="post">'.
+			$ap->getCheckboxes().
 			'<p><input type="submit" value="'.__('save').'" /></p>'.
+
+			$core->formNonce().$ap->getHiddenFields().
+			form::hidden(array('full_content'),'true').
+			form::hidden(array('action'),'typo').
 			'</form>';
+			$ap->endPage();
 		}
 	}
 
-	public static function adminCommentsActions($core,$co,$action,$redir)
+	public static function adminPagesActionsPage($core,$ap)
 	{
-		if ($action == 'typo' && !empty($_POST['set_typo'])
-			&& $core->auth->check('contentadmin',$core->blog->id))
-		{
-			try
-			{
-				if ((boolean)$_POST['set_typo']) {
-					while ($co->fetch())
-					{
-						if ($co->comment_content) {
-							# Apply typo features to comment
-							$cur = $core->con->openCursor($core->prefix.'comment');
+		// Add menuitem in actions dropdown list
+		if ($core->auth->check('contentadmin',$core->blog->id)) {
+			$ap->addAction(
+				array(__('Typo') => array(__('Typographic replacements') => 'typo')),
+				array('adminTypo','adminPagesDoReplacements')
+			);
+		}
+	}
 
-							if ($co->comment_content)
-								$cur->comment_content = SmartyPants($co->comment_content);
+	public static function adminPagesDoReplacements($core,dcPostsActionsPage $ap,$post)
+	{
+		if (!empty($post['full_content'])) {
+			// Do replacements
+			$posts = $ap->getRS();
+			if ($posts->rows()) {
+				while ($posts->fetch())
+				{
+					if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
+						# Apply typo features to entry
+						$cur = $core->con->openCursor($core->prefix.'post');
 
-							$cur->update('WHERE comment_id = '.(integer) $co->comment_id);
-						}
+						if ($posts->post_excerpt_xhtml)
+							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
+						if ($posts->post_content_xhtml)
+							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml);
+
+						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
 				}
+				$ap->redirect(array('upd' => 1),true);
+			} else {
+				$ap->redirect();
+			}
+		} else {
+			// Ask confirmation for replacements
+			$ap->beginPage(
+				dcPage::breadcrumb(
+						array(
+							html::escapeHTML($core->blog->name) => '',
+							__('Pages') => 'plugin.php?p=pages',
+							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+			)));
 
-				http::redirect($redir);
+			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
+
+			echo
+			'<form action="'.$ap->getURI().'" method="post">'.
+			$ap->getCheckboxes().
+			'<p><input type="submit" value="'.__('save').'" /></p>'.
+
+			$core->formNonce().$ap->getHiddenFields().
+			form::hidden(array('full_content'),'true').
+			form::hidden(array('action'),'typo').
+			'</form>';
+			$ap->endPage();
+		}
+	}
+
+	public static function adminCommentsActionsPage($core,$ap)
+	{
+		// Add menuitem in actions dropdown list
+		if ($core->auth->check('contentadmin',$core->blog->id)) {
+			$ap->addAction(
+				array(__('Typo') => array(__('Typographic replacements') => 'typo')),
+				array('adminTypo','adminCommentsDoReplacements')
+			);
+		}
+	}
+
+	public static function adminCommentsDoReplacements($core,dcCommentsActionsPage $ap,$post)
+	{
+		if (!empty($post['full_content'])) {
+			// Do replacements
+			$co = $ap->getRS();
+			if ($co->rows()) {
+				while ($co->fetch())
+				{
+					if ($co->comment_content) {
+						# Apply typo features to comment
+						$cur = $core->con->openCursor($core->prefix.'comment');
+						$cur->comment_content = SmartyPants($co->comment_content);
+						$cur->update('WHERE comment_id = '.(integer) $co->comment_id);
+					}
+				}
+				$ap->redirect(array('upd' => 1),true);
+			} else {
+				$ap->redirect();
 			}
-			catch (Exception $e)
-			{
-				$core->error->add($e->getMessage());
-			}
+		} else {
+			// Ask confirmation for replacements
+			$ap->beginPage(
+				dcPage::breadcrumb(
+						array(
+							html::escapeHTML($core->blog->name) => '',
+							__('Comments') => 'comments.php',
+							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+			)));
+
+			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);
+
+			echo
+			'<form action="'.$ap->getURI().'" method="post">'.
+			$ap->getCheckboxes().
+			'<p><input type="submit" value="'.__('save').'" /></p>'.
+
+			$core->formNonce().$ap->getHiddenFields().
+			form::hidden(array('full_content'),'true').
+			form::hidden(array('action'),'typo').
+			'</form>';
+			$ap->endPage();
 		}
 	}
 
