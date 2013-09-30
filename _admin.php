@@ -111,7 +111,7 @@ class adminTypo
 						array(
 							html::escapeHTML($core->blog->name) => '',
 							__('Pages') => 'plugin.php?p=pages',
-							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+							__('Typographic replacements') => ''
 				)));
 			} else {
 				$ap->beginPage(
@@ -119,7 +119,7 @@ class adminTypo
 						array(
 							html::escapeHTML($core->blog->name) => '',
 							__('Entries') => 'posts.php',
-							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+							__('Typographic replacements') => ''
 			)));
 			}
 
@@ -175,7 +175,7 @@ class adminTypo
 						array(
 							html::escapeHTML($core->blog->name) => '',
 							__('Comments') => 'comments.php',
-							'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+							__('Typographic replacements') => ''
 			)));
 
 			dcPage::warning(__('Warning! These replacements will not be undoable.'),false,false);

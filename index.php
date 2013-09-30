@@ -48,7 +48,7 @@ if (!empty($_POST['saveconfig'])) {
 echo dcPage::breadcrumb(
 	array(
 		html::escapeHTML($core->blog->name) => '',
-		'<span class="page-title">'.__('Typographic replacements').'</span>' => ''
+		__('Typographic replacements') => ''
 	));
 ?>
 
