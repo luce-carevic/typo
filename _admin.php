@@ -29,7 +29,8 @@ $_menu['Blog']->addItem(__('Typographic replacements'),'plugin.php?p=typo','inde
 		preg_match('/plugin.php\?p=typo(&.*)?$/',$_SERVER['REQUEST_URI']),
 		$core->auth->check('contentadmin',$core->blog->id));
 
-$core->addBehavior('adminDashboardFavs',array('adminTypo','adminDashboardFavs'));
+/* Register favorite */
+$core->addBehavior('adminDashboardFavorites',array('adminTypo','adminDashboardFavorites'));
 
 /* Add behavior callbacks for posts actions */
 $core->addBehavior('adminPostsActionsPage',array('adminTypo','adminPostsActionsPage'));
@@ -40,11 +41,15 @@ $core->addBehavior('adminCommentsActionsPage',array('adminTypo','adminCommentsAc
 
 class adminTypo
 {
-	public static function adminDashboardFavs($core,$favs)
+	public static function adminDashboardFavorites($core,$favs)
 	{
-		$favs['Typo'] = new ArrayObject(array('Typo','Typographic replacements','plugin.php?p=typo',
-			'index.php?pf=typo/icon.png','index.php?pf=typo/icon-big.png',
-			$core->auth->check('contentadmin',$core->blog->id),null,null));
+		$favs->register('Typo', array(
+			'title' => __('Typographic replacements'),
+			'url' => 'plugin.php?p=typo',
+			'small-icon' => 'index.php?pf=typo/icon.png',
+			'large-icon' => 'index.php?pf=typo/icon-big.png',
+			'permissions' => 'contentadmin'
+		));
 	}
 
 	public static function adminPostsActionsPage($core,$ap)
