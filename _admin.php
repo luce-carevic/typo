@@ -104,7 +104,7 @@ class adminTypo
 						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
 				}
-				$ap->redirect(array('upd' => 1),true);
+				$ap->redirect(true,array('upd' => 1));
 			} else {
 				$ap->redirect();
 			}
@@ -169,7 +169,7 @@ class adminTypo
 						$cur->update('WHERE comment_id = '.(integer) $co->comment_id);
 					}
 				}
-				$ap->redirect(array('upd' => 1),true);
+				$ap->redirect(true,array('upd' => 1));
 			} else {
 				$ap->redirect();
 			}
