@@ -3,7 +3,6 @@
 # This file is part of typo, a plugin for Dotclear 2.
 #
 # Copyright (c) Franck Paul and contributors
-# carnet.franck.paul@gmail.com
 #
 # Licensed under the GPL version 2.0 license.
 # A copy of this license is available in LICENSE file or at
@@ -23,7 +22,7 @@ try
 	{
 		throw new Exception('Typo requires Dotclear 2.2');
 	}
-	
+
 	$core->blog->settings->addNamespace('typo');
 
 	// Default state is active for entries content and inactive for comments
@@ -32,7 +31,7 @@ try
 	$core->blog->settings->typo->put('typo_comments',false,'boolean','Apply on comments',false,true);
 
 	$core->setVersion('typo',$new_version);
-	
+
 	return true;
 }
 catch (Exception $e)
