@@ -15,6 +15,7 @@ if (!defined('DC_CONTEXT_ADMIN')) { exit; }
 $typo_active = (boolean)$core->blog->settings->typo->typo_active;
 $typo_entries = (boolean)$core->blog->settings->typo->typo_entries;
 $typo_comments = (boolean)$core->blog->settings->typo->typo_comments;
+$typo_dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
 
 // Saving new configuration
 if (!empty($_POST['saveconfig'])) {
@@ -25,9 +26,11 @@ if (!empty($_POST['saveconfig'])) {
 		$typo_active = (empty($_POST['active']))?false:true;
 		$typo_entries = (empty($_POST['entries']))?false:true;
 		$typo_comments = (empty($_POST['comments']))?false:true;
+		$typo_dashes_mode = (integer)$_POST['dashes_mode'];
 		$core->blog->settings->typo->put('typo_active',$typo_active,'boolean');
 		$core->blog->settings->typo->put('typo_entries',$typo_entries,'boolean');
 		$core->blog->settings->typo->put('typo_comments',$typo_comments,'boolean');
+		$core->blog->settings->typo->put('typo_dashes_mode',$typo_dashes_mode,'integer');
 		$core->blog->triggerBlog();
 		$msg = __('Configuration successfully updated.');
 	}
@@ -49,9 +52,15 @@ echo dcPage::breadcrumb(
 		html::escapeHTML($core->blog->name) => '',
 		__('Typographic replacements') => ''
 	));
-?>
 
-<?php if (!empty($msg)) dcPage::success($msg); ?>
+if (!empty($msg)) dcPage::success($msg);
+
+$dashes_mode_options = array(
+	1 => __('"--" for em-dashes; no en-dash support (default)'),
+	2 => __('"---" for em-dashes; "--" for en-dashes'),
+	3 => __('"--" for em-dashes; "---" for en-dashes')
+);
+?>
 
 <form method="post" action="plugin.php">
 	<p>
@@ -70,10 +79,22 @@ echo dcPage::breadcrumb(
 	</p>
 	<p class="form-note"><?php echo __('Excluding trackbacks'); ?></p>
 
+<?php
+	echo '<div class="fieldset"><h4>'.__('Dashes replacement mode').'</h4>';
+	$i = 0;
+	foreach ($dashes_mode_options as $k => $v)
+	{
+		echo '<p><label for="dashes_mode-'.$i.'" class="classic">'.
+		form::radio(array('dashes_mode','dashes_mode-'.$i),$k,$typo_dashes_mode == $k).' '.$v.'</label></p>';
+		$i++;
+	}
+	echo '</div>';
+?>
+
 	<p><input type="hidden" name="p" value="typo" />
-	<?php echo $core->formNonce(); ?>
-	<input type="submit" name="saveconfig" value="<?php echo __('Save configuration'); ?>" />
-</p>
+		<?php echo $core->formNonce(); ?>
+		<input type="submit" name="saveconfig" value="<?php echo __('Save configuration'); ?>" />
+	</p>
 </form>
 
 </body>

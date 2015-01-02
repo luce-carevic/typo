@@ -29,6 +29,7 @@ try
 	$core->blog->settings->typo->put('typo_active',true,'boolean','Active',false,true);
 	$core->blog->settings->typo->put('typo_entries',true,'boolean','Apply on entries',false,true);
 	$core->blog->settings->typo->put('typo_comments',false,'boolean','Apply on comments',false,true);
+	$core->blog->settings->typo->put('typo_dashes_mode',1,'integer','Dashes replacement mode',false,true);
 
 	$core->setVersion('typo',$new_version);
 

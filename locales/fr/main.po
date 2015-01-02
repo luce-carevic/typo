@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 typo module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-24 13:24+0200\n"
+"POT-Creation-Date: 2015-01-02 10:40+0100\n"
 "PO-Revision-Date: 2012-11-05 17:39+0100\n"
 "Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>\n"
 "Language-Team: \n"
@@ -31,11 +31,14 @@ msgstr "Attention ces remplacements sont irréversibles."
 msgid "save"
 msgstr "enregistrer"
 
-msgid "Apply typographic replacements for selected comments"
-msgstr "Appliquer les remplacements typographiques pour les commentaires sélectionnés"
+msgid "\"--\" for em-dashes; no en-dash support (default)"
+msgstr "\"--\" (2) pour les tirets longs (em-dashes) ; pas de support des tirets courts (en-dash, option par défaut)"
 
-msgid "Configuration successfully updated."
-msgstr "La configuration a été correctement enregistrée"
+msgid "\"---\" for em-dashes; \"--\" for en-dashes"
+msgstr "\"---\" (3) pour les tirets longs (em-dashes) ; \"--\" (2) pour les tirets courts (en-dash)"
+
+msgid "\"--\" for em-dashes; \"---\" for en-dashes"
+msgstr "\"--\" (2) pour les tirets longs (em-dashes) ; \"---\" (3) pour les tirets courts (en-dash)"
 
 msgid "Enable typographic replacements for this blog"
 msgstr "Activer les remplacements typographiques pour ce blog"
@@ -49,11 +52,5 @@ msgstr "Activer les remplacements typographiques pour les commentaires de ce blo
 msgid "Excluding trackbacks"
 msgstr "Rétroliens exclus"
 
-msgid "Save configuration"
-msgstr "Enregistrer la configuration"
-
-#~ msgid "Apply typographic replacements for selected entries"
-#~ msgstr "Appliquer les remplacements typographiques pour les billets sélectionnés"
-
-#~ msgid "Options"
-#~ msgstr "Options"
+msgid "Dashes replacement mode"
+msgstr "Mode de remplacement des tirets multiples"

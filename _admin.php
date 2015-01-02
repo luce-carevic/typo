@@ -89,6 +89,7 @@ class adminTypo
 			// Do replacements
 			$posts = $ap->getRS();
 			if ($posts->rows()) {
+				$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
 				while ($posts->fetch())
 				{
 					if (($posts->post_excerpt_xhtml) || ($posts->post_content_xhtml)) {
@@ -96,9 +97,9 @@ class adminTypo
 						$cur = $core->con->openCursor($core->prefix.'post');
 
 						if ($posts->post_excerpt_xhtml)
-							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml);
+							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 						if ($posts->post_content_xhtml)
-							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml);
+							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 
 						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
@@ -159,12 +160,13 @@ class adminTypo
 			// Do replacements
 			$co = $ap->getRS();
 			if ($co->rows()) {
+				$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
 				while ($co->fetch())
 				{
 					if ($co->comment_content) {
 						# Apply typo features to comment
 						$cur = $core->con->openCursor($core->prefix.'comment');
-						$cur->comment_content = SmartyPants($co->comment_content);
+						$cur->comment_content = SmartyPants($co->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 						$cur->update('WHERE comment_id = '.(integer) $co->comment_id);
 					}
 				}
@@ -202,18 +204,19 @@ class adminTypo
 		global $core;
 		if ($core->blog->settings->typo->typo_active && $core->blog->settings->typo->typo_entries) {
 			if (@is_array($ref)) {
+				$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
 				/* Transform typo for excerpt (XHTML) */
 				if (isset($ref['excerpt_xhtml'])) {
 					$excerpt = &$ref['excerpt_xhtml'];
 					if ($excerpt) {
-						$excerpt = SmartyPants($excerpt);
+						$excerpt = SmartyPants($excerpt,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 					}
 				}
 				/* Transform typo for content (XHTML) */
 				if (isset($ref['content_xhtml'])) {
 					$content = &$ref['content_xhtml'];
 					if ($content) {
-						$content = SmartyPants($content);
+						$content = SmartyPants($content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 					}
 				}
 			}
@@ -228,7 +231,8 @@ class adminTypo
 			/* Transform typo for comment content (XHTML) */
 			if (!(boolean)$cur->comment_trackback) {
 				if ($cur->comment_content != null) {
-					$cur->comment_content = SmartyPants($cur->comment_content);
+					$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
+					$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
 				}
 			}
 		}
