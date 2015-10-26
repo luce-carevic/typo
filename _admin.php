@@ -24,7 +24,9 @@ $core->addBehavior('coreBeforeCommentCreate',array('adminTypo','updateTypoCommen
 $core->addBehavior('coreBeforeCommentUpdate',array('adminTypo','updateTypoComments'));
 
 /* Add menu item in extension list */
-$_menu['Blog']->addItem(__('Typographic replacements'),'plugin.php?p=typo','index.php?pf=typo/icon.png',
+$_menu['Blog']->addItem(__('Typographic replacements'),
+		'plugin.php?p=typo',
+		urldecode(dcPage::getPF('typo/icon.png')),
 		preg_match('/plugin.php\?p=typo(&.*)?$/',$_SERVER['REQUEST_URI']),
 		$core->auth->check('contentadmin',$core->blog->id));
 
@@ -45,8 +47,8 @@ class adminTypo
 		$favs->register('Typo', array(
 			'title' => __('Typographic replacements'),
 			'url' => 'plugin.php?p=typo',
-			'small-icon' => 'index.php?pf=typo/icon.png',
-			'large-icon' => 'index.php?pf=typo/icon-big.png',
+			'small-icon' => urldecode(dcPage::getPF('typo/icon.png')),
+			'large-icon' => urldecode(dcPage::getPF('typo/icon-big.png')),
 			'permissions' => 'contentadmin'
 		));
 	}
