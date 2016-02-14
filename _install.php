@@ -18,9 +18,9 @@ if (version_compare($old_version,$new_version,'>=')) return;
 
 try
 {
-	if (version_compare(DC_VERSION,'2.2','<'))
+	if (version_compare(DC_VERSION,'2.6','<'))
 	{
-		throw new Exception('Typo requires Dotclear 2.2');
+		throw new Exception('Typo requires Dotclear 2.6+');
 	}
 
 	$core->blog->settings->addNamespace('typo');
