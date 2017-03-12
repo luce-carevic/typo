@@ -32,14 +32,14 @@ class xmlrpcTypo
 				if (isset($ref['excerpt_xhtml'])) {
 					$excerpt = &$ref['excerpt_xhtml'];
 					if ($excerpt) {
-						$excerpt = SmartyPants($excerpt,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$excerpt = SmartyPants($excerpt,($dashes_mode ?: SMARTYPANTS_ATTR));
 					}
 				}
 				/* Transform typo for content (XHTML) */
 				if (isset($ref['content_xhtml'])) {
 					$content = &$ref['content_xhtml'];
 					if ($content) {
-						$content = SmartyPants($content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$content = SmartyPants($content,($dashes_mode ?: SMARTYPANTS_ATTR));
 					}
 				}
 			}
@@ -55,7 +55,7 @@ class xmlrpcTypo
 			if (!(boolean)$cur->comment_trackback) {
 				if ($cur->comment_content != null) {
 					$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
-					$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+					$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ?: SMARTYPANTS_ATTR));
 				}
 			}
 		}

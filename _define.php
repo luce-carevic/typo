@@ -18,6 +18,7 @@ $this->registerModule(
 	/* Version */			'1.9',
 	array(
 		/* Permissions */	'permissions' =>	'contentadmin',
-		/* Type */			'type' =>			'plugin'
+		/* Type */			'type' =>			'plugin',
+		/* Details */		'details' =>		'https://open-time.net/docs/plugins/typo'
 	)
 );

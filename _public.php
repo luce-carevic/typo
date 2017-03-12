@@ -30,7 +30,7 @@ class dcTypo
 				if ($cur->comment_content != null) {
 					if ($core->blog->settings->typo->typo_comments)
 						$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
-						$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ?: SMARTYPANTS_ATTR));
 				}
 			}
 		}
@@ -45,7 +45,7 @@ class dcTypo
 			if ($prv['content'] != null) {
 				if ($core->blog->settings->typo->typo_comments)
 					$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
-					$prv['content'] = SmartyPants($prv['content'],($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+					$prv['content'] = SmartyPants($prv['content'],($dashes_mode ?: SMARTYPANTS_ATTR));
 			}
 		}
 	}

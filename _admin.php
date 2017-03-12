@@ -99,9 +99,9 @@ class adminTypo
 						$cur = $core->con->openCursor($core->prefix.'post');
 
 						if ($posts->post_excerpt_xhtml)
-							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+							$cur->post_excerpt_xhtml = SmartyPants($posts->post_excerpt_xhtml,($dashes_mode ?: SMARTYPANTS_ATTR));
 						if ($posts->post_content_xhtml)
-							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+							$cur->post_content_xhtml = SmartyPants($posts->post_content_xhtml,($dashes_mode ?: SMARTYPANTS_ATTR));
 
 						$cur->update('WHERE post_id = '.(integer) $posts->post_id);
 					}
@@ -168,7 +168,7 @@ class adminTypo
 					if ($co->comment_content) {
 						# Apply typo features to comment
 						$cur = $core->con->openCursor($core->prefix.'comment');
-						$cur->comment_content = SmartyPants($co->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$cur->comment_content = SmartyPants($co->comment_content,($dashes_mode ?: SMARTYPANTS_ATTR));
 						$cur->update('WHERE comment_id = '.(integer) $co->comment_id);
 					}
 				}
@@ -211,14 +211,14 @@ class adminTypo
 				if (isset($ref['excerpt_xhtml'])) {
 					$excerpt = &$ref['excerpt_xhtml'];
 					if ($excerpt) {
-						$excerpt = SmartyPants($excerpt,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$excerpt = SmartyPants($excerpt,($dashes_mode ?: SMARTYPANTS_ATTR));
 					}
 				}
 				/* Transform typo for content (XHTML) */
 				if (isset($ref['content_xhtml'])) {
 					$content = &$ref['content_xhtml'];
 					if ($content) {
-						$content = SmartyPants($content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+						$content = SmartyPants($content,($dashes_mode ?: SMARTYPANTS_ATTR));
 					}
 				}
 			}
@@ -234,7 +234,7 @@ class adminTypo
 			if (!(boolean)$cur->comment_trackback) {
 				if ($cur->comment_content != null) {
 					$dashes_mode = (integer)$core->blog->settings->typo->typo_dashes_mode;
-					$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ? $dashes_mode : SMARTYPANTS_ATTR));
+					$cur->comment_content = SmartyPants($cur->comment_content,($dashes_mode ?: SMARTYPANTS_ATTR));
 				}
 			}
 		}
