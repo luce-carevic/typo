@@ -16,7 +16,7 @@ The plugin **must** be activated before beeing used on **each** blog of the plat
 Options
 -------
 
-By default the plugin process entries content. You can also activated this process for the comments (excluding trackbacks, pingbacks or webmentions):
+By default the plugin process entries content (and excerpt). You can also activated this process for the comments (excluding trackbacks, pingbacks or webmentions):
 
 ![Settings](../img/typo-settings.jpg)
 

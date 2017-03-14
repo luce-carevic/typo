@@ -30,7 +30,7 @@ The couple of single dashes **\--** are replaced by a **—** (in wiki mode edit
 !!! Note
 	The dashes replacement (en and/or em) may by tuned specifically (see [options](settings/#options))
 
-Three consecutive point **\...** are replaced by **…**
+Three consecutive points **\...** are replaced by **…**
 
 
 Processing
@@ -39,7 +39,7 @@ Processing
 These replacements are done for entries (posts, pages, …) when you save them using the backend of Dotclear or using an XML/RPC client. Both of excerpt and content are processed by the plugin.
 
 !!! tip
-	The replacements are not applied for the content of the following HTML elements: ```<pre>```, ```<code>```, ```<kbd>```, ```<script>``` and ```<math>```. You can use the **\\** escape character to avoid some transformations.
+	The replacements are not applied to the content of the following HTML elements: ```<pre>```, ```<code>```, ```<kbd>```, ```<script>``` and ```<math>```. You can use the **\\** escape character to avoid some transformations.
 
 
 Development
