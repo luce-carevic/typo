@@ -1,24 +1,26 @@
 <?php
-# -- BEGIN LICENSE BLOCK ----------------------------------
-# This file is part of typo, a plugin for Dotclear 2.
-#
-# Copyright (c) Franck Paul and contributors
-#
-# Licensed under the GPL version 2.0 license.
-# A copy of this license is available in LICENSE file or at
-# http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-# -- END LICENSE BLOCK ------------------------------------
+/**
+ * @brief typo, a plugin for Dotclear 2
+ *
+ * @package Dotclear
+ * @subpackage Plugins
+ *
+ * @author Franck Paul
+ *
+ * @copyright Franck Paul carnet.franck.paul@gmail.com
+ * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
-if (!defined('DC_RC_PATH')) { return; }
+if (!defined('DC_RC_PATH')) {return;}
 
 $this->registerModule(
-	/* Name */				"Typo",
-	/* Description*/		"Brings smart typographic replacements for your blog entries and comments",
-	/* Author */			"Franck Paul",
-	/* Version */			'1.9',
-	array(
-		/* Permissions */	'permissions' =>	'contentadmin',
-		/* Type */			'type' =>			'plugin',
-		/* Details */		'details' =>		'https://open-time.net/docs/plugins/typo'
-	)
+    "Typo",                                                                     // Name
+    "Brings smart typographic replacements for your blog entries and comments", // Description
+    "Franck Paul",                                                              // Author
+    '1.9',                                                                      // Version
+    array(
+        'permissions' => 'contentadmin',                            // Permissions
+        'type'        => 'plugin',                                  // Type
+        'details'     => 'https://open-time.net/docs/plugins/typo' // Details
+    )
 );

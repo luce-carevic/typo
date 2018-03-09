@@ -1,7 +1,7 @@
 # Typographic replacement plugin for Dotclear 2
 
 !!! tip "Current release"
-    [1.9 — 2016-02-14](https://open-time.net/post/2016/02/14/Plugin-Typo-19-pour-Dotclear) (Dotclear 2.6+)
+    [1.9 — 2016-02-14][ot-dl] (Dotclear 2.6+)
 
 ![](img/icon-big.png)
 
@@ -22,7 +22,7 @@ Will be transformed to this:
 The plugin may be downloaded and installed from following sources:
 
  * [DotAddict](http://plugins.dotaddict.org/dc2/details/typo)
- * [Open-Time](https://open-time.net/post/2016/02/14/Plugin-Typo-19-pour-Dotclear)
+ * [Open-Time][ot-dl]
 
 Or directly from the administration plugins page of Dotclear
 
@@ -31,3 +31,5 @@ Or directly from the administration plugins page of Dotclear
 The plugin **must** be activated before being used on your blog[^1]. See [user guide](user-guide/usage) for more information.
 
 [^1]: Go to the main page of the Typo plugin to activated it (Blog section of the Dotclear admin menu).
+
+[ot-dl]: https://open-time.net/post/2016/02/14/Plugin-Typo-19-pour-Dotclear
