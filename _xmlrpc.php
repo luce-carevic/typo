@@ -16,11 +16,11 @@ if (!defined('DC_RC_PATH')) {return;}
 require_once dirname(__FILE__) . '/inc/smartypants.php';
 
 /* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...) */
-$core->addBehavior('coreAfterPostContentFormat', array('xmlrpcTypo', 'updateTypoEntries'));
+$core->addBehavior('coreAfterPostContentFormat', ['xmlrpcTypo', 'updateTypoEntries']);
 
 /* Add behavior callbacks, will be used for all comments (not trackbacks) */
-$core->addBehavior('coreBeforeCommentCreate', array('xmlrpcTypo', 'updateTypoComments'));
-$core->addBehavior('coreBeforeCommentUpdate', array('xmlrpcTypo', 'updateTypoComments'));
+$core->addBehavior('coreBeforeCommentCreate', ['xmlrpcTypo', 'updateTypoComments']);
+$core->addBehavior('coreBeforeCommentUpdate', ['xmlrpcTypo', 'updateTypoComments']);
 
 class xmlrpcTypo
 {

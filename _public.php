@@ -16,8 +16,8 @@ if (!defined('DC_RC_PATH')) {return;}
 require_once dirname(__FILE__) . '/inc/smartypants.php';
 
 /* Add behavior callback for typo replacement in comments */
-$core->addBehavior('coreBeforeCommentCreate', array('dcTypo', 'updateTypoComments'));
-$core->addBehavior('publicBeforeCommentPreview', array('dcTypo', 'previewTypoComments'));
+$core->addBehavior('coreBeforeCommentCreate', ['dcTypo', 'updateTypoComments']);
+$core->addBehavior('publicBeforeCommentPreview', ['dcTypo', 'previewTypoComments']);
 
 class dcTypo
 {

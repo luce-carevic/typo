@@ -17,10 +17,11 @@ $this->registerModule(
     "Typo",                                                                     // Name
     "Brings smart typographic replacements for your blog entries and comments", // Description
     "Franck Paul",                                                              // Author
-    '1.9',                                                                      // Version
-    array(
+    '1.10',                                                                     // Version
+    [
+        'requires'    => [['core', '2.13']],                        // Dependencies
         'permissions' => 'contentadmin',                            // Permissions
         'type'        => 'plugin',                                  // Type
         'details'     => 'https://open-time.net/docs/plugins/typo' // Details
-    )
+    ]
 );

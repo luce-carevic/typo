@@ -48,20 +48,20 @@ if (!empty($_POST['saveconfig'])) {
 <body>
 <?php
 echo dcPage::breadcrumb(
-    array(
+    [
         html::escapeHTML($core->blog->name) => '',
         __('Typographic replacements')      => ''
-    ));
+    ]);
 
 if (!empty($msg)) {
     dcPage::success($msg);
 }
 
-$dashes_mode_options = array(
+$dashes_mode_options = [
     1 => __('"--" for em-dashes; no en-dash support (default)'),
     2 => __('"---" for em-dashes; "--" for en-dashes'),
     3 => __('"--" for em-dashes; "---" for en-dashes')
-);
+];
 ?>
 
 <form method="post" action="plugin.php">
@@ -86,7 +86,7 @@ echo '<div class="fieldset"><h4>' . __('Dashes replacement mode') . '</h4>';
 $i = 0;
 foreach ($dashes_mode_options as $k => $v) {
     echo '<p><label for="dashes_mode-' . $i . '" class="classic">' .
-    form::radio(array('dashes_mode', 'dashes_mode-' . $i), $k, $typo_dashes_mode == $k) . ' ' . $v . '</label></p>';
+    form::radio(['dashes_mode', 'dashes_mode-' . $i], $k, $typo_dashes_mode == $k) . ' ' . $v . '</label></p>';
     $i++;
 }
 echo '</div>';

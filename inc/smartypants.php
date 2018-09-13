@@ -68,7 +68,7 @@ function SmartyPants($text, $attr = SMARTYPANTS_ATTR) {
 # Initialize the parser and return the result of its transform method.
 #
 	# Setup static parser array.
-	static $parser = array();
+	static $parser = [];
 	if (!isset($parser[$attr])) {
 		$parser_class = SMARTYPANTS_PARSER_CLASS;
 		$parser[$attr] = new $parser_class($attr);
@@ -336,15 +336,15 @@ class SmartyPants_Parser {
 		# Special case if the very first character is a quote
 		# followed by punctuation at a non-word-break. Close the quotes by brute force:
 		$_ = preg_replace(
-			array("/^'(?=$punct_class\\B)/", "/^\"(?=$punct_class\\B)/"),
-			array('&#8217;',                 '&#8221;'), $_);
+			["/^'(?=$punct_class\\B)/", "/^\"(?=$punct_class\\B)/"],
+			['&#8217;',                 '&#8221;'], $_);
 
 
 		# Special case for double sets of quotes, e.g.:
 		#   <p>He said, "'Quoted' words in a larger quote."</p>
 		$_ = preg_replace(
-			array("/\"'(?=\w)/",    "/'\"(?=\w)/"),
-			array('&#8220;&#8216;', '&#8216;&#8220;'), $_);
+			["/\"'(?=\w)/",    "/'\"(?=\w)/"],
+			['&#8220;&#8216;', '&#8216;&#8220;'], $_);
 
 		# Special case for decade abbreviations (the '80s):
 		$_ = preg_replace("/'(?=\\d{2}s)/", '&#8217;', $_);
@@ -419,8 +419,8 @@ class SmartyPants_Parser {
 	#   Example output: &#8220;Isn't this fun?&#8221;
 	#
 
-		$_ = str_replace(array("``",       "''",),
-						 array('&#8220;', '&#8221;'), $_);
+		$_ = str_replace(["``",       "''",],
+						 ['&#8220;', '&#8221;'], $_);
 		return $_;
 	}
 
@@ -435,8 +435,8 @@ class SmartyPants_Parser {
 	#   Example output: &#8216;Isn&#8217;t this fun?&#8217;
 	#
 
-		$_ = str_replace(array("`",       "'",),
-						 array('&#8216;', '&#8217;'), $_);
+		$_ = str_replace(["`",       "'",],
+						 ['&#8216;', '&#8217;'], $_);
 		return $_;
 	}
 
@@ -464,8 +464,8 @@ class SmartyPants_Parser {
 	#
 
 		#                      em         en
-		$_ = str_replace(array("---",     "--",),
-						 array('&#8212;', '&#8211;'), $_);
+		$_ = str_replace(["---",     "--",],
+						 ['&#8212;', '&#8211;'], $_);
 		return $_;
 	}
 
@@ -487,8 +487,8 @@ class SmartyPants_Parser {
 	#
 
 		#                      en         em
-		$_ = str_replace(array("---",     "--",),
-						 array('&#8211;', '&#8212;'), $_);
+		$_ = str_replace(["---",     "--",],
+						 ['&#8211;', '&#8212;'], $_);
 		return $_;
 	}
 
@@ -504,7 +504,7 @@ class SmartyPants_Parser {
 	#   Example output: Huh&#8230;?
 	#
 
-		$_ = str_replace(array("...",     ". . .",), '&#8230;', $_);
+		$_ = str_replace(["...",     ". . .",], '&#8230;', $_);
 		return $_;
 	}
 
@@ -520,14 +520,14 @@ class SmartyPants_Parser {
 	#
 
 							#  en-dash    em-dash
-		$_ = str_replace(array('&#8211;', '&#8212;'),
-						 array('-',       '--'), $_);
+		$_ = str_replace(['&#8211;', '&#8212;'],
+						 ['-',       '--'], $_);
 
 		# single quote         open       close
-		$_ = str_replace(array('&#8216;', '&#8217;'), "'", $_);
+		$_ = str_replace(['&#8216;', '&#8217;'], "'", $_);
 
 		# double quote         open       close
-		$_ = str_replace(array('&#8220;', '&#8221;'), '"', $_);
+		$_ = str_replace(['&#8220;', '&#8221;'], '"', $_);
 
 		$_ = str_replace('&#8230;', '...', $_); # ellipsis
 
@@ -552,8 +552,8 @@ class SmartyPants_Parser {
 	#               \`      &#96;
 	#
 		$_ = str_replace(
-			array('\\\\',  '\"',    "\'",    '\.',    '\-',    '\`'),
-			array('&#92;', '&#34;', '&#39;', '&#46;', '&#45;', '&#96;'), $_);
+			['\\\\',  '\"',    "\'",    '\.',    '\-',    '\`'],
+			['&#92;', '&#34;', '&#39;', '&#46;', '&#45;', '&#96;'], $_);
 
 		return $_;
 	}
@@ -575,7 +575,7 @@ class SmartyPants_Parser {
 	#   <http://www.bradchoate.com/past/mtregex.php>
 	#
 		$index = 0;
-		$tokens = array();
+		$tokens = [];
 
 		$match = '(?s:<!--.*?-->)|'.	# comment
 				 '(?s:<\?.*?\?>)|'.				# processing instruction
@@ -586,9 +586,9 @@ class SmartyPants_Parser {
 
 		foreach ($parts as $part) {
 			if (++$index % 2 && $part != '')
-				$tokens[] = array('text', $part);
+				$tokens[] = ['text', $part];
 			else
-				$tokens[] = array('tag', $part);
+				$tokens[] = ['tag', $part];
 		}
 		return $tokens;
 	}
@@ -759,14 +759,14 @@ class SmartyPantsTypographer_Parser extends SmartyPants_Parser {
 		# Special case if the very first character is a quote
 		# followed by punctuation at a non-word-break. Close the quotes by brute force:
 		$_ = preg_replace(
-			array("/^'(?=$punct_class\\B)/", "/^\"(?=$punct_class\\B)/"),
-			array($sq_close,                 $dq_close), $_);
+			["/^'(?=$punct_class\\B)/", "/^\"(?=$punct_class\\B)/"],
+			[$sq_close,                 $dq_close], $_);
 
 		# Special case for double sets of quotes, e.g.:
 		#   <p>He said, "'Quoted' words in a larger quote."</p>
 		$_ = preg_replace(
-			array("/\"'(?=\w)/",     "/'\"(?=\w)/"),
-			array($dq_open.$sq_open, $sq_open.$dq_open), $_);
+			["/\"'(?=\w)/",     "/'\"(?=\w)/"],
+			[$dq_open.$sq_open, $sq_open.$dq_open], $_);
 
 		# Special case for decade abbreviations (the '80s):
 		$_ = preg_replace("/'(?=\\d{2}s)/", $sq_close, $_);
@@ -1077,7 +1077,7 @@ class SmartyPantsTypographer_Parser extends SmartyPants_Parser {
 	#
 		$_ = parent::stupefyEntities($_);
 
-		$_ = str_replace(array('&#8222;', '&#171;', '&#187'), '"', $_);
+		$_ = str_replace(['&#8222;', '&#171;', '&#187'], '"', $_);
 
 		return $_;
 	}
@@ -1096,8 +1096,8 @@ class SmartyPantsTypographer_Parser extends SmartyPants_Parser {
 		$_ = parent::processEscapes($_);
 
 		$_ = str_replace(
-			array('\,',    '\<',    '\>',    '\&lt;', '\&gt;'),
-			array('&#44;', '&#60;', '&#62;', '&#60;', '&#62;'), $_);
+			['\,',    '\<',    '\>',    '\&lt;', '\&gt;'],
+			['&#44;', '&#60;', '&#62;', '&#60;', '&#62;'], $_);
 
 		return $_;
 	}

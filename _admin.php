@@ -19,11 +19,11 @@ __('Typo') . __('Brings smart typographic replacements for your blog entries and
 require_once dirname(__FILE__) . '/inc/smartypants.php';
 
 /* Add behavior callback, will be used for all types of posts (standard, page, galery item, ...) */
-$core->addBehavior('coreAfterPostContentFormat', array('adminTypo', 'updateTypoEntries'));
+$core->addBehavior('coreAfterPostContentFormat', ['adminTypo', 'updateTypoEntries']);
 
 /* Add behavior callbacks, will be used for all comments (not trackbacks) */
-$core->addBehavior('coreBeforeCommentCreate', array('adminTypo', 'updateTypoComments'));
-$core->addBehavior('coreBeforeCommentUpdate', array('adminTypo', 'updateTypoComments'));
+$core->addBehavior('coreBeforeCommentCreate', ['adminTypo', 'updateTypoComments']);
+$core->addBehavior('coreBeforeCommentUpdate', ['adminTypo', 'updateTypoComments']);
 
 /* Add menu item in extension list */
 $_menu['Blog']->addItem(__('Typographic replacements'),
@@ -33,26 +33,26 @@ $_menu['Blog']->addItem(__('Typographic replacements'),
     $core->auth->check('contentadmin', $core->blog->id));
 
 /* Register favorite */
-$core->addBehavior('adminDashboardFavorites', array('adminTypo', 'adminDashboardFavorites'));
+$core->addBehavior('adminDashboardFavorites', ['adminTypo', 'adminDashboardFavorites']);
 
 /* Add behavior callbacks for posts actions */
-$core->addBehavior('adminPostsActionsPage', array('adminTypo', 'adminPostsActionsPage'));
-$core->addBehavior('adminPagesActionsPage', array('adminTypo', 'adminPagesActionsPage'));
+$core->addBehavior('adminPostsActionsPage', ['adminTypo', 'adminPostsActionsPage']);
+$core->addBehavior('adminPagesActionsPage', ['adminTypo', 'adminPagesActionsPage']);
 
 /* Add behavior callbacks for comments actions */
-$core->addBehavior('adminCommentsActionsPage', array('adminTypo', 'adminCommentsActionsPage'));
+$core->addBehavior('adminCommentsActionsPage', ['adminTypo', 'adminCommentsActionsPage']);
 
 class adminTypo
 {
     public static function adminDashboardFavorites($core, $favs)
     {
-        $favs->register('Typo', array(
+        $favs->register('Typo', [
             'title'       => __('Typographic replacements'),
             'url'         => 'plugin.php?p=typo',
             'small-icon'  => urldecode(dcPage::getPF('typo/icon.png')),
             'large-icon'  => urldecode(dcPage::getPF('typo/icon-big.png')),
             'permissions' => 'contentadmin'
-        ));
+        ]);
     }
 
     public static function adminPostsActionsPage($core, $ap)
@@ -60,8 +60,8 @@ class adminTypo
         // Add menuitem in actions dropdown list
         if ($core->auth->check('contentadmin', $core->blog->id)) {
             $ap->addAction(
-                array(__('Typo') => array(__('Typographic replacements') => 'typo')),
-                array('adminTypo', 'adminPostsDoReplacements')
+                [__('Typo') => [__('Typographic replacements') => 'typo']],
+                ['adminTypo', 'adminPostsDoReplacements']
             );
         }
     }
@@ -71,8 +71,8 @@ class adminTypo
         // Add menuitem in actions dropdown list
         if ($core->auth->check('contentadmin', $core->blog->id)) {
             $ap->addAction(
-                array(__('Typo') => array(__('Typographic replacements') => 'typo')),
-                array('adminTypo', 'adminPagesDoReplacements')
+                [__('Typo') => [__('Typographic replacements') => 'typo']],
+                ['adminTypo', 'adminPagesDoReplacements']
             );
         }
     }
@@ -110,7 +110,7 @@ class adminTypo
                         $cur->update('WHERE post_id = ' . (integer) $posts->post_id);
                     }
                 }
-                $ap->redirect(true, array('upd' => 1));
+                $ap->redirect(true, ['upd' => 1]);
             } else {
                 $ap->redirect();
             }
@@ -119,19 +119,19 @@ class adminTypo
             if ($type == 'page') {
                 $ap->beginPage(
                     dcPage::breadcrumb(
-                        array(
+                        [
                             html::escapeHTML($core->blog->name) => '',
                             __('Pages')                         => 'plugin.php?p=pages',
                             __('Typographic replacements')      => ''
-                        )));
+                        ]));
             } else {
                 $ap->beginPage(
                     dcPage::breadcrumb(
-                        array(
+                        [
                             html::escapeHTML($core->blog->name) => '',
                             __('Entries')                       => 'posts.php',
                             __('Typographic replacements')      => ''
-                        )));
+                        ]));
             }
 
             dcPage::warning(__('Warning! These replacements will not be undoable.'), false, false);
@@ -142,8 +142,8 @@ class adminTypo
             '<p><input type="submit" value="' . __('save') . '" /></p>' .
 
             $core->formNonce() . $ap->getHiddenFields() .
-            form::hidden(array('full_content'), 'true') .
-            form::hidden(array('action'), 'typo') .
+            form::hidden(['full_content'], 'true') .
+            form::hidden(['action'], 'typo') .
                 '</form>';
             $ap->endPage();
         }
@@ -154,8 +154,8 @@ class adminTypo
         // Add menuitem in actions dropdown list
         if ($core->auth->check('contentadmin', $core->blog->id)) {
             $ap->addAction(
-                array(__('Typo') => array(__('Typographic replacements') => 'typo')),
-                array('adminTypo', 'adminCommentsDoReplacements')
+                [__('Typo') => [__('Typographic replacements') => 'typo']],
+                ['adminTypo', 'adminCommentsDoReplacements']
             );
         }
     }
@@ -175,7 +175,7 @@ class adminTypo
                         $cur->update('WHERE comment_id = ' . (integer) $co->comment_id);
                     }
                 }
-                $ap->redirect(true, array('upd' => 1));
+                $ap->redirect(true, ['upd' => 1]);
             } else {
                 $ap->redirect();
             }
@@ -183,11 +183,11 @@ class adminTypo
             // Ask confirmation for replacements
             $ap->beginPage(
                 dcPage::breadcrumb(
-                    array(
+                    [
                         html::escapeHTML($core->blog->name) => '',
                         __('Comments')                      => 'comments.php',
                         __('Typographic replacements')      => ''
-                    )));
+                    ]));
 
             dcPage::warning(__('Warning! These replacements will not be undoable.'), false, false);
 
@@ -197,8 +197,8 @@ class adminTypo
             '<p><input type="submit" value="' . __('save') . '" /></p>' .
 
             $core->formNonce() . $ap->getHiddenFields() .
-            form::hidden(array('full_content'), 'true') .
-            form::hidden(array('action'), 'typo') .
+            form::hidden(['full_content'], 'true') .
+            form::hidden(['action'], 'typo') .
                 '</form>';
             $ap->endPage();
         }
