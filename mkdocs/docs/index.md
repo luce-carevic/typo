@@ -21,7 +21,7 @@ Will be transformed to this:
 
 The plugin may be downloaded and installed from following sources:
 
- * [DotAddict](http://plugins.dotaddict.org/dc2/details/typo)
+ * [DotAddict](https://plugins.dotaddict.org/dc2/details/typo)
  * [Open-Time][ot-dl]
 
 Or directly from the administration plugins page of Dotclear
